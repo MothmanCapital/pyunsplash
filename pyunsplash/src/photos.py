@@ -93,6 +93,28 @@ class Photo(UnsplashObject):
     def link_download_location(self):
         return self.links.get('download_location', None)
 
+    # Embed urls vs. view links. Required for all API uses per guidelines
+    # See https://help.unsplash.com/en/articles/2511271-guideline-hotlinking-images
+    @property
+    def embed_raw(self):
+        return self.links_embed.get('raw', None)
+
+    @property
+    def embed_full(self):
+        return self.links_embed.get('full', None)
+
+    @property
+    def embed_regular(self):
+        return self.links_embed.get('regular', None)
+
+    @property
+    def embed_small(self):
+        return self.links_embed.get('small', None)
+
+    @property
+    def embed_thumb(self):
+        return self.links_embed.get('thumb', None)
+
     def get_attribution(self, format='txt'):
         """
         Return the standard Unsplash attribution string, which currently is:

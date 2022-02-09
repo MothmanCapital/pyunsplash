@@ -58,12 +58,17 @@ class UnsplashObject(object):
     def links(self):
         return self.body.get('links', None)
 
+    @property
+    def links_embed(self):
+        return self.body.get('links', None)
+
     def _parse_source(self, source):
         # guess format based on source type, extract the link to self
         if isinstance(source, dict):
             logger.debug('Source is a dictionary')
             self.body = source
             self.url = source.get('links').get('self')
+            self.embed_url = source.get('urls').get('raw')
         #                                               # TODO: maybe protect and raise appropriate exception in
         elif isinstance(source, str):                   # case someone feeds a random dictionary here
             logger.debug('Source is a string')
